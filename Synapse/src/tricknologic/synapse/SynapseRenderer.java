@@ -15,8 +15,7 @@ public class SynapseRenderer implements GLSurfaceView.Renderer {
 	private float _green 	= 0.6f;
 	private float _blue 	= 0.15f;
 	
-	private int _NUM_ENTITIES = 3;
-	private Entity[] _entity = new Entity[_NUM_ENTITIES];
+	Gameplay _gameplay = new Gameplay();
 	
 	private float[] _lightAmbient = {0.5f, 0.5f, 0.5f, 1.0f};
 	private float[] _lightDiffuse = {1.0f, 1.0f, 1.0f, 1.0f};
@@ -98,19 +97,7 @@ public class SynapseRenderer implements GLSurfaceView.Renderer {
 		
 		initLights();
 		
-		float[] spawnLocs = { 
-				-4.0f, 0.0f, -20.0f,
-				0.0f, 0.0f, -20.0f,
-				4.0f, 0.0f, -20.0f,
-		};
-		for (int idx = 0; idx < _NUM_ENTITIES; idx++)
-		{
-			_entity[idx] = new Entity();
-			_entity[idx].setPosition(spawnLocs[idx * 3], spawnLocs[idx * 3 + 1], spawnLocs[idx * 3 + 2]);
-			_entity[idx].setAngles(20.0f, 0.0f, 0.0f);
-			_entity[idx].init();
-			SceneManager.getInstance().addEntity(_entity[idx]);
-		}
+		_gameplay.init();
 	}
 	
 	/**
@@ -145,7 +132,7 @@ public class SynapseRenderer implements GLSurfaceView.Renderer {
 		gl.glLoadIdentity();
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 		
-		// update the scene objects to be rendered etc.
-		SceneManager.getInstance().update();
+		// update gameplay which will invoke scenemanager updates
+		_gameplay.update();
 	}
 }
