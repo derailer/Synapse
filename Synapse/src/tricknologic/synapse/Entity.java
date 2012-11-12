@@ -9,7 +9,7 @@ public class Entity {
 	private Vector _angles = new Vector();
 	
 	// visual representation of the entity
-	private Mesh _mesh;
+	protected Mesh _mesh;
 	
 	// attributes
 	private boolean _visible = true;
@@ -50,7 +50,7 @@ public class Entity {
 	 */
 	public void init() {
 		// for now default to creating a cube primitive
-		_mesh.createPrimitive(0);
+		_mesh.createPrimitive_Cube(2.0f, 2.0f, 2.0f);
 	}
 	
 	/**

@@ -4,6 +4,8 @@ public class Gameplay {
 	private int _NUM_ENTITIES = 3;
 	private Entity[] _entity = new Entity[_NUM_ENTITIES];
 	
+	private Entity_Paddle _playerPaddle = new Entity_Paddle();
+	
 	public Gameplay() {
 	}
 	
