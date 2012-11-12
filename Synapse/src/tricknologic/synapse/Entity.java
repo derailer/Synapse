@@ -5,14 +5,15 @@ import javax.microedition.khronos.opengles.GL10;
 public class Entity {
 	
 	// positional information
-	private Vector _location = new Vector();
-	private Vector _angles = new Vector();
+	protected Vector _location = new Vector(0.0f, 0.0f, 0.0f);
+	protected Vector _angles = new Vector(0.0f, 0.0f, 0.0f);
+	protected Vector _velocity = new Vector(0.0f, 0.0f, 0.0f);
 	
 	// visual representation of the entity
 	protected Mesh _mesh;
 	
 	// attributes
-	private boolean _visible = true;
+	protected boolean _visible = true;
 
 	/**
 	 * Entity
@@ -57,6 +58,9 @@ public class Entity {
 	 * update
 	 */
 	public void update() {
+		// update our location based on velocity
+		_location = _location.add(_velocity);
+		
 		// render if we are marked visible
 		if (_visible) {
 			render();
